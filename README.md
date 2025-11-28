@@ -2,6 +2,9 @@
 
 A **vanilla implementation of a DCP Web Worker** with full event logging and configuration options. This template provides a starting point for anyone wanting to build a web-based DCP worker with real-time console output and complete sandbox monitoring.
 
+## Try it
+Live interactive JSFiddle: [https://jsfiddle.net/DCP_team/g29or41j/](https://jsfiddle.net/DCP_team/g29or41j/)
+
 ## Overview
 
 This repository is designed as a tutorial rather than a production-ready system. The code is intended to be clear and easy to understand, allowing developers to modify it as needed. Many configuration values are hard-coded (worker id, deposit account, compute groups, minimum wage, etc.), but they can be adapted or parameterized for more advanced use cases.
