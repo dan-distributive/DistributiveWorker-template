@@ -38,6 +38,7 @@ If you encounter any issues or have questions, you can reach the team via:
 
 - A modern web browser (Chrome, Firefox, Edge, Safari)
 - An account on [dcp.cloud](https://dcp.cloud) where Compute Credits will be deposited
+- (optional) learn more about Compute Credits and how they work [here](https://docs.google.com/document/d/1F6r6yGfVhRxmYT8YzGpzlXhK1jQhOenjDY7dVCSoL5M/edit?usp=sharing)
 
 ### Usage
 
