@@ -7,7 +7,7 @@ Live interactive JSFiddle: [https://jsfiddle.net/DCP_team/g29or41j/](https://jsf
 
 ## Overview
 
-This repository is designed as a tutorial rather than a production-ready system. The code is intended to be clear and easy to understand, allowing developers to modify it as needed. Many configuration values are hard-coded (worker id, deposit account, compute groups, minimum wage, etc.), but they can be adapted or parameterized for more advanced use cases.
+This repository is designed as a tutorial rather than a production-ready system. The code is intended to be clear and easy to understand, allowing developers to modify it as needed. Many configuration values are hard-coded (worker id, deposit account, compute groups, minimum wage, etc.), but they can and should be adapted or parameterized for more advanced use cases.
 
 If you encounter any issues or have questions, you can reach the team via:
 
@@ -17,7 +17,7 @@ If you encounter any issues or have questions, you can reach the team via:
 
 ## Features
 
-- Full DCP Web Worker setup with `identity` and `deposit account` configuration
+- Full DistributiveWorker setup with `identity` and `deposit account` configuration
 - Earn `Compute Credits` into your deposit account
 - Support for multiple `compute groups`
 - Control over `CPU/GPU cores`, `utilization`, and `minimum wage`
@@ -26,11 +26,13 @@ If you encounter any issues or have questions, you can reach the team via:
   - Sending results
   - Payment events
   - Connection and disconnection
+  - Errors and Warnings
   - Worker start/stop/end
 - Full logging of `sandbox events`:
   - Ready, job received, slice started/ended
   - Progress updates, metrics (CPU/GPU usage, I/O)
-  - Sandbox errors, warnings, payments
+  - Payment events
+  - Sandbox termination
 - Toggle between starting and stopping the worker
 - Lightweight, single HTML file implementation for quick testing or prototyping
 
@@ -45,7 +47,7 @@ If you encounter any issues or have questions, you can reach the team via:
 
 ### Usage
 
-1. Open `dcp-web-worker-template.html` in your browser.
+1. Open `index.html` in your browser.
 2. Click the **Work!** button to start the worker.
 3. The worker logs all events to the textarea on the page in real-time.
 4. Click **Stop!** to halt the worker.
@@ -71,10 +73,16 @@ computeGroups: [
   { joinKey: "demo", joinSecret: "dcp" },
 ],
 ```
+
 #### Cores and Utilization
 ```javascript
 cores: { cpu: 4, gpu: 1 },
 utilization: { cpu: 1, gpu: 1 }
+```
+
+#### Sandbox Concurrency
+```javascript
+maxSandboxes: 4
 ```
 
 #### Minimum Wage
@@ -87,11 +95,6 @@ minimumWage: {
 }
 ```
 
-#### Sandbox Concurrency
-```javascript
-maxSandboxes: 4
-```
-
 #### Job Filtering
 ```javascript
 jobIds: false // Or provide an array of job IDs to exclusively run
@@ -100,15 +103,17 @@ jobIds: false // Or provide an array of job IDs to exclusively run
 ### Event Logging
 
 The template logs **all important worker and sandbox events** to a textarea console, including:
-- `worker.fetch` – when new slices are fetched
+- `worker.connect` / `worker.disconnect` / `worker.start` / `worker.stop` / `worker.end` – worker lifecycle
+
+- `worker.fetch` – when new job slices are fetched
 
 - `worker.result` – after sending results
 
 - `worker.payment` – payment received
 
-- `worker.disconnect` / `worker.stop` / `worker.end` – worker lifecycle
+- `worker.error` / `worker.warning` – worker errors and warnings
 
-- `sandbox.ready` / `sandbox.job` / `sandbox.slice` / `sandbox.progress` / `sandbox.metrics` / `sandbox.sliceEnd` / `sandbox.payment` / `sandbox.error` / `sandbox.warning`
+- `sandbox.ready` / `sandbox.job` / `sandbox.slice` / `sandbox.progress` / `sandbox.metrics` / `sandbox.sliceEnd` / `sandbox.payment`
 
 This provides full visibility into worker activity and sandbox execution.
 
@@ -125,4 +130,4 @@ MIT License – feel free to use and modify for your own DCP projects.
 
 ## Questions?
 
-Explore the Distributive Compute Platform [documentation](https://docs.dcp.dev) for more details on APIs and advanced configurations.
+Explore the Distributive Compute Platform [documentation](https://docs.dcp.dev) for more details on the Compute, Wallet, and Worker APIs and advanced configurations.
